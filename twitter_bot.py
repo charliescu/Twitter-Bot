@@ -3,10 +3,13 @@ import os
 import random
 
 # Twitter API credentials
-API_KEY = 'EaQ9DgVWf5owWGbMxuK5RRILC'
-API_SECRET_KEY = 'xNsdN2nN0YA04D0eEV3M91Zd2RFXfhh9jL4fIczeJ9rQ9Go226'
-ACCESS_TOKEN = '1798813245127426048-pgDHcfjQjVU9c1Fz5jXNKKVSOntpfr'
-ACCESS_TOKEN_SECRET = 'qJjCmQXsoS4TOhM06EctEvCZ7xqKnkqYQujJ3XfbPMmUo'
+API_KEY = os.getenv('API_KEY')
+API_SECRET_KEY = os.getenv('API_SECRET_KEY')
+ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
+ACCESS_TOKEN_SECRET = os.getenv('ACCESS_TOKEN_SECRET')
+
+if None in (API_KEY, API_SECRET_KEY, ACCESS_TOKEN, ACCESS_TOKEN_SECRET):
+    raise ValueError("One or more API keys or tokens are not set.")
 
 def get_twitter_conn_v1(api_key, api_secret, access_token, access_token_secret) -> tweepy.API:
     """Get twitter conn 1.1"""
